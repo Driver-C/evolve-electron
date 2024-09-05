@@ -27,7 +27,7 @@ const options = {
         "electron-prompt/**",
         "evolved-withBackground.ico"
     ],
-    extraResources:[
+    extraResources: [
         "PmotschmannEvolve/**",
         "extensions/**"
     ],
@@ -35,6 +35,12 @@ const options = {
         "target": [
             {
                 "target": "nsis",
+                "arch": [
+                    "x64"
+                ]
+            },
+            {
+                "target": "portable",
                 "arch": [
                     "x64"
                 ]
@@ -54,8 +60,9 @@ const options = {
         }
     }
 };
+
 async function addElectronFuses(context) {
-    const { appOutDir, packager: { appInfo }, electronPlatformName, arch } = context
+    const {appOutDir, packager: {appInfo}, electronPlatformName, arch} = context
     const ext = {
         darwin: '.app',
         win32: '.exe',
@@ -80,7 +87,7 @@ builder.build({
     config: options
 })
     .then((result) => {
-        console.log("done:"+result[1])
+        console.log("done:" + result[1])
     })
     .catch((error) => {
         console.error(error)
